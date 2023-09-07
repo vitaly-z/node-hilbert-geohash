@@ -20,16 +20,53 @@ describe("hilbert", function () {
     }
   });
 
-  describe("encode + decode", () => {
+  describe("encode + decode", function () {
     for (let precision = 1; precision <= 10; precision++) {
       for (let bpc = 2; bpc <= 6; bpc += 2) {
-        for (let i = 0; i < 100; i++) {
-          const lngIn = rand_lng();
-          const latIn = rand_lat();
-          const code = encode(lngIn, latIn, precision, bpc);
-          const { lng, lat, lng_err, lat_err } = decode_exactly(code, bpc);
-          expect(lng).be.closeTo(lngIn, Math.abs(lng_err));
-        }
+        it("should work (precision = " + precision + ") " + "(bits_per_char = " + bpc + ")", function () {
+          for (let i = 0; i < 1000; i++) {
+            const lngIn = rand_lng();
+            const latIn = rand_lat();
+            const code = encode(lngIn, latIn, precision, bpc);
+            const { lng, lat, lng_err, lat_err } = decode_exactly(code, bpc);
+            expect(lng).be.closeTo(lngIn, Math.abs(lng_err));
+            expect(lat).be.closeTo(latIn, Math.abs(lat_err));
+          }
+        });
+      }
+    }
+  });
+
+  describe("encode + decode 64 bits", function () {
+    for (let precision = 1; precision <= 32; precision++) {
+      for (let bpc = 2; bpc <= 2; bpc += 2) {
+        it("should work (precision = " + precision + ") " + "(bits_per_char = " + bpc + ")", function () {
+          for (let i = 0; i < 1000; i++) {
+            const lngIn = rand_lng();
+            const latIn = rand_lat();
+            const code = encode(lngIn, latIn, precision, bpc);
+            const { lng, lat, lng_err, lat_err } = decode_exactly(code, bpc);
+            expect(lng).be.closeTo(lngIn, Math.abs(lng_err));
+            expect(lat).be.closeTo(latIn, Math.abs(lat_err));
+            // AssertionError: expected -180.00000008381903 to be close to -142.88246283284542 +/- 8.381903171539307e-8
+            //  at Suite.eval (/home/vitaly-z/node-hilbert-geohash/test/test.js:45:26)
+          }
+        });
+      }
+    }
+
+    for (let precision = 1; precision <= 16; precision++) {
+      for (let bpc = 4; bpc <= 4; bpc += 2) {
+        it("should work (precision = " + precision + ") " + "(bits_per_char = " + bpc + ")", function () {
+          for (let i = 0; i < 1000; i++) {
+            const lngIn = rand_lng();
+            const latIn = rand_lat();
+            const code = encode(lngIn, latIn, precision, bpc);
+            const { lng, lat, lng_err, lat_err } = decode_exactly(code, bpc);
+            expect(lng).be.closeTo(lngIn, Math.abs(lng_err));
+            expect(lat).be.closeTo(latIn, Math.abs(lat_err));
+          }
+        });
       }
     }
   });

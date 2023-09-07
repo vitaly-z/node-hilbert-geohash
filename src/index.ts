@@ -184,7 +184,7 @@ const hilbert_curve = (precision: number, bits_per_char = 6) => {
 
 const isOverflowing = (bits: number) =>
   assert(
-    bits < 64,
+    bits <= 64,
     "Over 64 bits not supported. Reduce 'precision' or 'bits_per_char' so their product is <= 64"
   );
 const isCorrectBpc = (bpc: number) =>

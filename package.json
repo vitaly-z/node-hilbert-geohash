@@ -1,6 +1,6 @@
 {
-  "name": "hilbert-geohash",
-  "version": "0.0.4",
+  "name": "@vitaly-z/hilbert-geohash",
+  "version": "0.0.5",
   "description": "Node.js implementation of Hilbert-curve based geohashing.",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/napuu/node-hilbert-geohash.git"
+    "url": "git+https://github.com/vitaly-z/node-hilbert-geohash.git"
   },
   "keywords": [
     "geohash",
@@ -24,9 +24,9 @@
   "author": "Santeri Kääriäinen <santeri.kaariainen@iki.fi>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/napuu/node-hilbert-geohash/issues"
+    "url": "https://github.com/vitaly-z/node-hilbert-geohash/issues"
   },
-  "homepage": "https://github.com/napuu/node-hilbert-geohash#readme",
+  "homepage": "https://github.com/vitaly-z/node-hilbert-geohash#readme",
   "devDependencies": {
     "@types/node": "^14.6.2",
     "chai": "^4.2.0",
